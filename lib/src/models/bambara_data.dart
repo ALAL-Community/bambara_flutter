@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class BambaraData with EquatableMixin {
-  final String amount;
+  final int amount;
   final String paymentReference;
   final String customerPhone;
   final String publicKey;

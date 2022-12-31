@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () async {
                       await BambaraView(
                         data: BambaraData(
-                            amount: "1000",
+                            amount: 1000,
                             paymentReference: "21e5ysuiadjaksd",
                             customerPhone: "778909878",
                             publicKey: "dasfdghasjkduasdas"),

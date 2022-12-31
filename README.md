@@ -22,7 +22,7 @@ import 'package:bambara_flutter/bambara_flutter.dart';
 onPressed: () async {
   await BambaraView(
     data: BambaraData(
-        amount: "1000",
+        amount: 1000,
         paymentReference: "21e5ysuiadjaksd",
         customerPhone: "778909878",
         publicKey: "dasfdghasjkduasdas"
