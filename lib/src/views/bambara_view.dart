@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:bambara_flutter/bambara_flutter.dart';
 import 'package:bambara_flutter/src/const/const.dart';
 import 'package:bambara_flutter/src/models/bambara_event_model.dart';
 import 'package:bambara_flutter/src/raw/bambara_html.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class BambaraView extends StatefulWidget {
@@ -26,17 +27,29 @@ class BambaraView extends StatefulWidget {
       this.onClosed})
       : super(key: key);
 
-  Future show(BuildContext context) => showMaterialModalBottomSheet(
-        expand: false,
+  Future show(BuildContext context) => showModalBottomSheet(
+        isScrollControlled: true,
+        enableDrag: true,
+        isDismissible: false,
         context: context,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
         ),
-        builder: (context) => BambaraView(
-          data: data,
-          onSuccess: onSuccess,
-          onError: onError,
-          onClosed: onClosed,
+        builder: (context) => SingleChildScrollView(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: BambaraView(
+                data: data,
+                onSuccess: onSuccess,
+                onError: onError,
+                onClosed: onClosed,
+              )),
         ),
       );
   @override
@@ -50,14 +63,17 @@ class _BambaraViewState extends State<BambaraView> {
     final event = BambaraEventModel.fromJson(res);
     switch (event.type) {
       case ON_SUCCESS:
+        sleep(const Duration(seconds: 3));
+        widget.onSuccess!(event.data);
         Navigator.pop(context);
-        print('succeded !');
         return;
       case ON_ERROR:
+        sleep(const Duration(seconds: 3));
+        widget.onError!(event.data);
         Navigator.pop(context);
-        print('error !');
         return;
       case ON_CLOSE:
+        widget.onClosed!();
         Navigator.pop(context);
         return;
     }
@@ -66,6 +82,7 @@ class _BambaraViewState extends State<BambaraView> {
   @override
   void initState() {
     super.initState();
+
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
@@ -82,7 +99,7 @@ class _BambaraViewState extends State<BambaraView> {
         ),
       )
       ..loadRequest(BambaraHtml.buildBambaraHtml(widget.data))
-      ..enableZoom(false)
+      ..scrollTo(0, 100)
       ..addJavaScriptChannel('BambaraClientInterface',
           onMessageReceived: (JavaScriptMessage data) {
         _handleBambaraHtmlResponse(data.message);
@@ -92,15 +109,7 @@ class _BambaraViewState extends State<BambaraView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: MediaQuery.of(context).viewInsets,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
-      height: 400,
-      child: WebViewWidget(controller: _controller),
-    );
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        child: WebViewWidget(controller: _controller));
   }
 }

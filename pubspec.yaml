@@ -1,7 +1,8 @@
 name: bambara_flutter
-description: A new Flutter package project.
+description: ⚡️Official Lazerpay Flutter SDK
+
 version: 0.0.1
-homepage: https://github.com/LazerPay-Finance/lazerpay_flutter
+homepage: https://github.com/coinhubafrica/bambara_flutter
 
 environment:
   sdk: '>=2.18.5 <3.0.0'

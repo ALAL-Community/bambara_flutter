@@ -11,29 +11,28 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+This package makes it easy to use the Bambara in a flutter project.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+import 'package:bambara_flutter/bambara_flutter.dart';
+
+...
+onPressed: () async {
+  await BambaraView(
+    data: BambaraData(
+        amount: "1000",
+        paymentReference: "21e5ysuiadjaksd",
+        customerPhone: "778909878",
+        publicKey: "dasfdghasjkduasdas"
+    ),
+    onClosed: () {
+      print("CLOSED");
+    },
+    onError: (value) => print("ERROR HERE"),
+    onSuccess: (value) => print("SUCCESS HERE"),
+  ).show(context);
+},
+  ...
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
