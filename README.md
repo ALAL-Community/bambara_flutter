@@ -23,15 +23,15 @@ onPressed: () async {
   await BambaraView(
     data: BambaraData(
         amount: 1000,
-        paymentReference: "21e5ysuiadjaksd",
-        customerPhone: "778909878",
-        publicKey: "dasfdghasjkduasdas"
-    ),
-    onClosed: () {
-      print("CLOSED");
-    },
-    onError: (value) => print("ERROR HERE"),
-    onSuccess: (value) => print("SUCCESS HERE"),
+        reference: "21e5ysuiadjaksd",
+        phone: "778909878",
+        email: "bass@gmail.com",
+        name: "Bassirou",
+        publicKey: "pk_IuR83FabBsxW2P6mHPJywyGljga9QcFg",),
+    onClosed: () => print("CLOSED"),
+    onError: (data) => print(data),
+    onSuccess: (data) => print("SUCCESS HERE"),
+    onRedirect: (data) => print("REDIRECT HERE"),
   ).show(context);
 },
   ...

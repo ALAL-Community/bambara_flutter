@@ -2,18 +2,22 @@ import 'package:equatable/equatable.dart';
 
 class BambaraData with EquatableMixin {
   final int amount;
-  final String paymentReference;
-  final String customerPhone;
+  final String reference;
+  final String phone;
+  final String email;
+  final String name;
   final String publicKey;
 
   BambaraData({
     required this.amount,
-    required this.paymentReference,
-    required this.customerPhone,
+    required this.reference,
+    required this.phone,
+    required this.email,
+    required this.name,
     required this.publicKey,
   });
 
   @override
   List<Object?> get props =>
-      [amount, customerPhone, paymentReference, publicKey];
+      [amount, phone, reference, publicKey];
 }

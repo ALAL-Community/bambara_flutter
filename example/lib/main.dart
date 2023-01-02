@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bambara_flutter/bambara_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   height: 60,
-                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
                   child: CupertinoButton(
-                    color: lazerpayColor,
+                    color: const Color(0xFF0066FF),
                     child: const Center(
                       child: Text(
                         'Open Bambara',
@@ -79,14 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       await BambaraView(
                         data: BambaraData(
                             amount: 1000,
-                            paymentReference: "21e5ysuiadjaksd",
-                            customerPhone: "778909878",
-                            publicKey: "dasfdghasjkduasdas"),
-                        onClosed: () {
-                          print("CLOSED");
-                        },
-                        onError: (value) => print("ERROR HERE"),
-                        onSuccess: (value) => print("SUCCESS HERE"),
+                            reference: getRandomString(30),
+                            phone: "786338816",
+                            email: "bass@gmail.com",
+                            name: "Bassirou",
+                            publicKey: "pk_IuR83FabBsxW2P6mHPJywyGljga9QcFg",),
+                        onClosed: () => print("CLOSED"),
+                        onError: (data) => print(data),
+                        onSuccess: (data) => print("SUCCESS HERE"),
+                        onRedirect: (data) => print(data),
                       ).show(context);
                     },
                   ),
@@ -100,4 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-final lazerpayColor = Color(0xFF0066FF);
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));

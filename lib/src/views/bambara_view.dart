@@ -5,6 +5,7 @@ import 'package:bambara_flutter/src/const/const.dart';
 import 'package:bambara_flutter/src/models/bambara_event_model.dart';
 import 'package:bambara_flutter/src/raw/bambara_html.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class BambaraView extends StatefulWidget {
@@ -16,6 +17,9 @@ class BambaraView extends StatefulWidget {
   /// Error callback<
   final ValueChanged<dynamic>? onError;
 
+  /// Success callback<
+  final ValueChanged<dynamic>? onRedirect;
+
   /// LazerPay popup Close callback
   final VoidCallback? onClosed;
 
@@ -24,7 +28,8 @@ class BambaraView extends StatefulWidget {
       required this.data,
       this.onSuccess,
       this.onError,
-      this.onClosed})
+      this.onClosed,
+      this.onRedirect})
       : super(key: key);
 
   Future show(BuildContext context) => showModalBottomSheet(
@@ -43,12 +48,13 @@ class BambaraView extends StatefulWidget {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: BambaraView(
                 data: data,
                 onSuccess: onSuccess,
                 onError: onError,
                 onClosed: onClosed,
+                onRedirect: onRedirect
               )),
         ),
       );
@@ -63,12 +69,17 @@ class _BambaraViewState extends State<BambaraView> {
     final event = BambaraEventModel.fromJson(res);
     switch (event.type) {
       case ON_SUCCESS:
-        sleep(const Duration(seconds: 3));
+        sleep(const Duration(seconds: 8));
         widget.onSuccess!(event.data);
         Navigator.pop(context);
         return;
+      case ON_REDIRECT:
+        sleep(const Duration(seconds: 8));
+        widget.onRedirect!(event.data);
+        launchUrlString(event.data['url']);
+        return;
       case ON_ERROR:
-        sleep(const Duration(seconds: 3));
+        sleep(const Duration(seconds: 8));
         widget.onError!(event.data);
         Navigator.pop(context);
         return;

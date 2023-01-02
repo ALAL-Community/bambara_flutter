@@ -11,11 +11,9 @@ class BambaraHtml {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bambara</title>
-      <link rel="stylesheet" href="https://c2af214bb513.eu.ngrok.io/src/bambara.min.css">
-    <script src="https://c2af214bb513.eu.ngrok.io/src/bambara.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://bambara.coinhub.africa/css/bambara.min.css">
+    <script src="https://bambara.coinhub.africa/js/bambara.js" type="text/javascript"></script>
     <style> body { image-rendering: pixelated; } </style>
-    
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body onload="setupBambaraCheckout()" style="border-radius: 20px; background-color:#fff;height:100vh;overflow: hidden; ">
@@ -37,8 +35,14 @@ class BambaraHtml {
       function setupBambaraCheckout() {
         new Bambara({
           amount: "${bambaraData.amount}",
-          reference: '${bambaraData.paymentReference}',
-          phone: "${bambaraData.customerPhone}",
+          reference: '${bambaraData.reference}',
+          customer: {
+            phone: "${bambaraData.phone}",
+            name: "${bambaraData.name}",
+            email: "${bambaraData.email}",
+          },
+          products: [],
+          publicKey: "${bambaraData.publicKey}",
           onError: (data) => sendMessage({
             "type": "$ON_ERROR",
             "data": { ...data },
@@ -49,6 +53,10 @@ class BambaraHtml {
           }),
           onClose: () => sendMessage({
             "type": "$ON_CLOSE",
+          }),
+          onRedirect: () => sendMessage({
+            "type": "$ON_REDIRECT",
+            "data": { ...data },
           }),
         });
       }
