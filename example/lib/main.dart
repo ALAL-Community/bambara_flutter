@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () async {
                       await BambaraView(
                         data: BambaraData(
-                            amount: 1000,
+                            amount: 300,
                             reference: getRandomString(30),
                             phone: "786338816",
                             email: "bass@gmail.com",

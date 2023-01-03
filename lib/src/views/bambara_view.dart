@@ -5,6 +5,7 @@ import 'package:bambara_flutter/src/const/const.dart';
 import 'package:bambara_flutter/src/models/bambara_event_model.dart';
 import 'package:bambara_flutter/src/raw/bambara_html.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -76,7 +77,8 @@ class _BambaraViewState extends State<BambaraView> {
       case ON_REDIRECT:
         sleep(const Duration(seconds: 8));
         widget.onRedirect!(event.data);
-        launchUrlString(event.data['url']);
+        launchUrl(Uri.parse(event.data['url']));
+        Navigator.pop(context);
         return;
       case ON_ERROR:
         sleep(const Duration(seconds: 8));

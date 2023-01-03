@@ -7,16 +7,16 @@ class BambaraHtml {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bambara</title>
-    <link rel="stylesheet" href="https://bambara.coinhub.africa/css/bambara.min.css">
-    <script src="https://bambara.coinhub.africa/js/bambara.js" type="text/javascript"></script>
-    <style> body { image-rendering: pixelated; } </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bambara</title>
+  <link rel="stylesheet" href="https://bambara.coinhub.africa/css/bambara.min.css">
+  <script src="https://bambara.coinhub.africa/js/bambara.js" type="text/javascript"></script>
+  <style> body { image-rendering: pixelated; } </style>
 </head>
 
-<body onload="setupBambaraCheckout()" style="border-radius: 20px; background-color:#fff;height:100vh;overflow: hidden; ">
+<body onload="setupBambaraCheckout()" style="border-radius: 20px; background-color:#fff;height:100vh;overflow: hidden;">
     <script type="text/javascript">
       // Send callback to dart JSMessageClient
       function sendMessage(message) {
@@ -54,7 +54,7 @@ class BambaraHtml {
           onClose: () => sendMessage({
             "type": "$ON_CLOSE",
           }),
-          onRedirect: () => sendMessage({
+          onRedirect: (data) => sendMessage({
             "type": "$ON_REDIRECT",
             "data": { ...data },
           }),

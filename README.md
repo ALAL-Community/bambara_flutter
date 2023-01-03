@@ -67,4 +67,7 @@ onPressed: () async {
     }
 }
 ```
-### OnSuccess Response
+### OnError Response
+```dart
+{message: OK, statusCode: 200, data: {transaction: {slug: fe8d1971-6238-47de-8a05-16fa502445dd, status: failed, fees: 6, amount: 300, currency: xof, wallet_reference: null, reference: f1Z3zIb2zlZoiccZt6tkmwg6c2iivM, customer: {name: Bassirou, email: bass@gmail.com, phone: 786338816}, link: https://bambara.coinhub.africa/payments/fe8d1971-6238-47de-8a05-16fa502445dd, webhook: {ipn: null, success_url: , cancel_url: , failure_url: , home_url: https://forge.laravel.com}, products: [], extras: {wallet_url: null}}}}
+```
