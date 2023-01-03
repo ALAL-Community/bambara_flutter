@@ -36,3 +36,35 @@ onPressed: () async {
 },
   ...
 ```
+### OnSuccess Response
+```json
+{
+    "slug": "79c31e45-8342-4b35-a2e3-6794f2e248f9",
+    "status": "success",
+    "fees": 4,
+    "amount": 200,
+    "currency": "xof",
+    "wallet_reference": null,
+    "reference": "e2lzwa6eelm",
+    "customer": {
+        "name": "Amadou Sall",
+        "email": "sall@amadou.com",
+        "phone": "776780987"
+    },
+    "link": "https://bambara.coinhub.africa/payments/79c31e45-8342-4b35-a2e3-6794f2e248f9",
+    "webhook": {
+        "ipn": null,
+        "success_url": "",
+        "cancel_url": "",
+        "failure_url": "",
+        "home_url": "https://app.magmasend.com/"
+    },
+    "products": [
+
+    ],
+    "extras": {
+        "wallet_url": "https://pay.wave.com/c/cos-1c3yrfn9011g6?a=200&c=XOF&m=Kopar%20Express"
+    }
+}
+```
+### OnSuccess Response
