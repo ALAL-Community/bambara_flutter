@@ -72,7 +72,7 @@ class _BambaraViewState extends State<BambaraView> {
     switch (event.type) {
       case ON_SUCCESS:
         widget.onSuccess!(event.data);
-        if(widget.closeOnComplete){
+        if(widget.closeOnComplete == false){
           sleep(const Duration(seconds: 3));
           Navigator.pop(context);
         }
@@ -83,7 +83,7 @@ class _BambaraViewState extends State<BambaraView> {
         return;
       case ON_ERROR:
         widget.onError!(event.data);
-        if(widget.closeOnComplete){
+        if(widget.closeOnComplete == true){
           sleep(const Duration(seconds: 3));
           Navigator.pop(context);
         }

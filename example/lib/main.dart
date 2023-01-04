@@ -90,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onError: (data) => print(data),
                         onSuccess: (data) => print(data),
                         onRedirect: (data) => print(data),
+                        closeOnComplete: false,
                       ).show(context);
                     },
                   ),
