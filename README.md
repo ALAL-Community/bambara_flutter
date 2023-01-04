@@ -39,9 +39,55 @@ onPressed: () async {
 ```
 ### OnSuccess Response
 ```dart
-{slug: 5befed32-3784-4992-96b6-ffa3b088751b, status: success, fees: 4, amount: 200, currency: xof, wallet_reference: null, reference: 1E6oqPJ4Wn61mzOYXzAoBaQLdhl15V, customer: {name: Bassirou, email: bass@gmail.com, phone: 786338816}, link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b, webhook: {ipn: null, success_url: , cancel_url: , failure_url: , home_url: https://forge.laravel.com}, products: [], extras: {wallet_url: }}
+{
+  slug: 5befed32-3784-4992-96b6-ffa3b088751b, 
+  status: success,
+  fees: 4, 
+  amount: 200,
+  currency: xof,
+  wallet_reference: null,
+  reference: 1E6oqPJ4Wn61mzOYXzAoBaQLdhl15V,
+  customer: {
+    name: Bassirou,
+    email: bass@gmail.com, 
+    phone: 786338816
+  }, 
+  link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b, 
+  webhook: {
+    ipn: null, 
+    success_url: https://example.com/success,
+    cancel_url: https://example.com/cancel, 
+    failure_url: https://example.com/failure , 
+    home_url: https://example.com}, 
+    products: [],
+    extras: {wallet_url: }
+  }
+}
 ```
 ### OnError Response
 ```dart
-{message: OK, statusCode: 200, data: {transaction: {slug: fe8d1971-6238-47de-8a05-16fa502445dd, status: failed, fees: 6, amount: 300, currency: xof, wallet_reference: null, reference: f1Z3zIb2zlZoiccZt6tkmwg6c2iivM, customer: {name: Bassirou, email: bass@gmail.com, phone: 786338816}, link: https://bambara.coinhub.africa/payments/fe8d1971-6238-47de-8a05-16fa502445dd, webhook: {ipn: null, success_url: , cancel_url: , failure_url: , home_url: https://forge.laravel.com}, products: [], extras: {wallet_url: null}}}}
+{
+  slug: 5befed32-3784-4992-96b6-ffa3b088751b, 
+  status: failed,
+  fees: 4, 
+  amount: 200,
+  currency: xof,
+  wallet_reference: null,
+  reference: 1E6oqPJ4Wn61mzOYXzAoBaQLdhl15V,
+  customer: {
+    name: Bassirou,
+    email: bass@gmail.com, 
+    phone: 786338816
+  }, 
+  link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b, 
+  webhook: {
+    ipn: null, 
+    success_url: https://example.com/success,
+    cancel_url: https://example.com/cancel, 
+    failure_url: https://example.com/failure , 
+    home_url: https://example.com}, 
+    products: [],
+    extras: {wallet_url: }
+  }
+}
 ```
