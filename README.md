@@ -15,6 +15,12 @@ This package makes it easy to use the Bambara in a flutter project.
 Making it super easy to accept Orange Money and Wave Payment in your App.
 
 <img src="./example/example.gif" width="200">
+
+## Installation
+Add the package to your pubspec.yml file
+```dart
+  bambara_flutter: ^0.0.1
+```
 ## Usage
 
 ```dart
