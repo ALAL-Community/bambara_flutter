@@ -6,11 +6,12 @@ import 'package:bambara_flutter/src/models/bambara_event_model.dart';
 import 'package:bambara_flutter/src/raw/bambara_html.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class BambaraView extends StatefulWidget {
   final BambaraData data;
+
+  bool closeOnComplete;
 
   /// Success callback
   final ValueChanged<dynamic>? onSuccess;
@@ -24,13 +25,13 @@ class BambaraView extends StatefulWidget {
   /// LazerPay popup Close callback
   final VoidCallback? onClosed;
 
-  const BambaraView(
+  BambaraView(
       {Key? key,
       required this.data,
       this.onSuccess,
       this.onError,
       this.onClosed,
-      this.onRedirect})
+      this.onRedirect, this.closeOnComplete = true})
       : super(key: key);
 
   Future show(BuildContext context) => showModalBottomSheet(
@@ -70,20 +71,22 @@ class _BambaraViewState extends State<BambaraView> {
     final event = BambaraEventModel.fromJson(res);
     switch (event.type) {
       case ON_SUCCESS:
-        sleep(const Duration(seconds: 8));
         widget.onSuccess!(event.data);
-        Navigator.pop(context);
+        if(widget.closeOnComplete){
+          sleep(const Duration(seconds: 3));
+          Navigator.pop(context);
+        }
         return;
       case ON_REDIRECT:
-        sleep(const Duration(seconds: 8));
         widget.onRedirect!(event.data);
-        launchUrl(Uri.parse(event.data['url']));
-        Navigator.pop(context);
+        launchUrl(Uri.parse(event.data['url']), mode: LaunchMode.externalApplication);
         return;
       case ON_ERROR:
-        sleep(const Duration(seconds: 8));
         widget.onError!(event.data);
-        Navigator.pop(context);
+        if(widget.closeOnComplete){
+          sleep(const Duration(seconds: 3));
+          Navigator.pop(context);
+        }
         return;
       case ON_CLOSE:
         widget.onClosed!();
