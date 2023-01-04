@@ -14,7 +14,7 @@ and the Flutter guide for
 This package makes it easy to use the Bambara in a flutter project.
 Making it super easy to accept Orange Money and Wave Payment in your App.
 
-![Demo](./example/example.gif)
+<img src="./example/example.gif" width="200">
 ## Usage
 
 ```dart
