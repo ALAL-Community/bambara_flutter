@@ -1,7 +1,7 @@
 name: bambara_flutter
 description: Official Bambara Flutter SDK, Accept Wave and Orange Money Payment in seconds.
 
-version: 0.0.1
+version: 0.0.2-pre
 homepage: https://github.com/Bambara-Community/bambara_flutter
 
 environment:
