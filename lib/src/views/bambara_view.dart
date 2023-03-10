@@ -19,8 +19,11 @@ class BambaraView extends StatefulWidget {
   /// Error callback<
   final ValueChanged<dynamic>? onError;
 
-  /// Success callback<
+  /// Redirect callback<
   final ValueChanged<dynamic>? onRedirect;
+
+  /// Redirect callback<
+  final ValueChanged<dynamic>? onProcessing;
 
   /// LazerPay popup Close callback
   final VoidCallback? onClosed;
@@ -31,7 +34,9 @@ class BambaraView extends StatefulWidget {
       this.onSuccess,
       this.onError,
       this.onClosed,
-      this.onRedirect, this.closeOnComplete = true})
+      this.onRedirect,
+      this.onProcessing,
+      this.closeOnComplete = true})
       : super(key: key);
 
   Future show(BuildContext context) => showModalBottomSheet(
@@ -49,15 +54,17 @@ class BambaraView extends StatefulWidget {
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              height: MediaQuery.of(context).size.height * 0.6,
-              child: BambaraView(
-                data: data,
-                onSuccess: onSuccess,
-                onError: onError,
-                onClosed: onClosed,
-                onRedirect: onRedirect
-              )),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: BambaraView(
+              data: data,
+              onSuccess: onSuccess,
+              onError: onError,
+              onClosed: onClosed,
+              onRedirect: onRedirect,
+              onProcessing: onProcessing,
+            ),
+          ),
         ),
       );
   @override
@@ -70,25 +77,29 @@ class _BambaraViewState extends State<BambaraView> {
   void _handleBambaraHtmlResponse(String res) async {
     final event = BambaraEventModel.fromJson(res);
     switch (event.type) {
-      case ON_SUCCESS:
+      case onSuccess:
         widget.onSuccess!(event.data);
-        if(widget.closeOnComplete == false){
+        if (widget.closeOnComplete == false) {
           sleep(const Duration(seconds: 3));
           Navigator.pop(context);
         }
         return;
-      case ON_REDIRECT:
+      case onRedirect:
         widget.onRedirect!(event.data);
-        launchUrl(Uri.parse(event.data['url']), mode: LaunchMode.externalApplication);
+        launchUrl(Uri.parse(event.data['url']),
+            mode: LaunchMode.externalApplication);
         return;
-      case ON_ERROR:
+      case onError:
         widget.onError!(event.data);
-        if(widget.closeOnComplete == true){
+        if (widget.closeOnComplete == true) {
           sleep(const Duration(seconds: 3));
           Navigator.pop(context);
         }
         return;
-      case ON_CLOSE:
+      case onProcessing:
+        widget.onProcessing!(event.data);
+        return;
+      case onClose:
         widget.onClosed!();
         Navigator.pop(context);
         return;

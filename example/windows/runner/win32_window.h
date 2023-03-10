@@ -49,7 +49,7 @@ class Win32Window {
   HWND GetHandle();
 
   // If true, closing this window will quit the application.
-  void SetQuitOnClose(bool quit_on_close);
+  void SetQuitOnClose(bool quit_onClose);
 
   // Return a RECT representing the bounds of the current client area.
   RECT GetClientArea();
@@ -86,7 +86,7 @@ class Win32Window {
   // Retrieves a class instance pointer for |window|
   static Win32Window* GetThisFromHandle(HWND const window) noexcept;
 
-  bool quit_on_close_ = false;
+  bool quit_onClose_ = false;
 
   // window handle for top level window.
   HWND window_handle_ = nullptr;

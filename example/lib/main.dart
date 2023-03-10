@@ -80,16 +80,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () async {
                       await BambaraView(
                         data: BambaraData(
-                            amount: 200,
-                            reference: getRandomString(30),
-                            phone: "786338816",
-                            email: "bass@gmail.com",
-                            name: "Bassirou",
-                            publicKey: "pk_IuR83FabBsxW2P6mHPJywyGljga9QcFg",),
+                          amount: 200,
+                          reference: getRandomString(30),
+                          phone: "786338816",
+                          email: "bass@gmail.com",
+                          name: "Bassirou",
+                          publicKey: "pk_IuR83FabBsxW2P6mHPJywyGljga9QcFg",
+                        ),
                         onClosed: () => print("CLOSED"),
                         onError: (data) => print(data),
                         onSuccess: (data) => print(data),
                         onRedirect: (data) => print(data),
+                        onProcessing: (data) => print(data),
                         closeOnComplete: false,
                       ).show(context);
                     },

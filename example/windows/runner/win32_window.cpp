@@ -158,7 +158,7 @@ Win32Window::MessageHandler(HWND hwnd,
     case WM_DESTROY:
       window_handle_ = nullptr;
       Destroy();
-      if (quit_on_close_) {
+      if (quit_onClose_) {
         PostQuitMessage(0);
       }
       return 0;
@@ -231,8 +231,8 @@ HWND Win32Window::GetHandle() {
   return window_handle_;
 }
 
-void Win32Window::SetQuitOnClose(bool quit_on_close) {
-  quit_on_close_ = quit_on_close;
+void Win32Window::SetQuitOnClose(bool quit_onClose) {
+  quit_onClose_ = quit_onClose;
 }
 
 bool Win32Window::OnCreate() {

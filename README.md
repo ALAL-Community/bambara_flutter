@@ -17,10 +17,13 @@ Making it super easy to accept Orange Money and Wave Payment in your App.
 <img src="./example/example.gif" width="200">
 
 ## Installation
+
 Add the package to your pubspec.yml file
+
 ```dart
   bambara_flutter: ^0.0.1
 ```
+
 ## Usage
 
 ```dart
@@ -39,61 +42,66 @@ onPressed: () async {
     onClosed: () => print("CLOSED"),
     onError: (data) => print(data),
     onSuccess: (data) => print("SUCCESS HERE"),
+    onProcessing: (data) => print("Processing HERE"),
     onRedirect: (data) => print("REDIRECT HERE"),
-    closeOnComplete: false // Default value True. if True close the BambaraView widget automatically after calling onSuccess or onError 
+    closeOnComplete: false // Default value True. if True close the BambaraView widget automatically after calling onSuccess or onError
   ).show(context);
 },
   ...
 ```
+
 ### OnSuccess Response
+
 ```dart
 {
-  slug: 5befed32-3784-4992-96b6-ffa3b088751b, 
+  slug: 5befed32-3784-4992-96b6-ffa3b088751b,
   status: success,
-  fees: 4, 
+  fees: 4,
   amount: 200,
   currency: xof,
   wallet_reference: null,
   reference: 1E6oqPJ4Wn61mzOYXzAoBaQLdhl15V,
   customer: {
     name: Bassirou,
-    email: bass@gmail.com, 
+    email: bass@gmail.com,
     phone: 786338816
-  }, 
-  link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b, 
+  },
+  link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b,
   webhook: {
-    ipn: null, 
+    ipn: null,
     success_url: https://example.com/success,
-    cancel_url: https://example.com/cancel, 
-    failure_url: https://example.com/failure , 
-    home_url: https://example.com}, 
+    cancel_url: https://example.com/cancel,
+    failure_url: https://example.com/failure ,
+    home_url: https://example.com},
     products: [],
     extras: {wallet_url: }
   }
 }
 ```
+
 ### OnError Response
+
 ```dart
 {
-  slug: 5befed32-3784-4992-96b6-ffa3b088751b, 
+  slug: 5befed32-3784-4992-96b6-ffa3b088751b,
   status: failed,
-  fees: 4, 
+  fees: 4,
   amount: 200,
   currency: xof,
   wallet_reference: null,
   reference: 1E6oqPJ4Wn61mzOYXzAoBaQLdhl15V,
   customer: {
     name: Bassirou,
-    email: bass@gmail.com, 
+    email: bass@gmail.com,
     phone: 786338816
-  }, 
-  link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b, 
+  },
+  link: https://bambara.coinhub.africa/payments/5befed32-3784-4992-96b6-ffa3b088751b,
   webhook: {
-    ipn: null, 
+    ipn: null,
     success_url: https://example.com/success,
-    cancel_url: https://example.com/cancel, 
-    failure_url: https://example.com/failure , 
-    home_url: https://example.com}, 
+    cancel_url: https://example.com/cancel,
+    failure_url: https://example.com/failure ,
+    home_url: https://example.com},
     products: [],
     extras: {wallet_url: }
   }

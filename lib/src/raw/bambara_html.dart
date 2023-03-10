@@ -44,18 +44,22 @@ class BambaraHtml {
           products: [],
           publicKey: "${bambaraData.publicKey}",
           onError: (data) => sendMessage({
-            "type": "$ON_ERROR",
+            "type": "$onError",
             "data": { ...data },
           }),
           onSuccess: (data) => sendMessage({
-            "type": "$ON_SUCCESS",
+            "type": "$onSuccess",
             "data": { ...data },
           }),
           onClose: () => sendMessage({
-            "type": "$ON_CLOSE",
+            "type": "$onClose",
           }),
           onRedirect: (data) => sendMessage({
-            "type": "$ON_REDIRECT",
+            "type": "$onRedirect",
+            "data": { ...data },
+          }),
+           onProcessing: (data) => sendMessage({
+            "type": "$onProcessing",
             "data": { ...data },
           }),
         });
