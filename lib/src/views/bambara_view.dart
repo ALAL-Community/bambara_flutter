@@ -79,20 +79,22 @@ class _BambaraViewState extends State<BambaraView> {
     switch (event.type) {
       case onSuccess:
         widget.onSuccess!(event.data);
-        if (widget.closeOnComplete == false) {
-          sleep(const Duration(seconds: 3));
+        if (widget.closeOnComplete == true) {
+          sleep(const Duration(seconds: 6));
           Navigator.pop(context);
         }
         return;
       case onRedirect:
         widget.onRedirect!(event.data);
         launchUrl(Uri.parse(event.data['url']),
-            mode: LaunchMode.externalApplication);
+            mode: event.data['wallet'] == 'bank-card'
+                ? LaunchMode.inAppWebView
+                : LaunchMode.externalApplication);
         return;
       case onError:
         widget.onError!(event.data);
         if (widget.closeOnComplete == true) {
-          sleep(const Duration(seconds: 3));
+          sleep(const Duration(seconds: 6));
           Navigator.pop(context);
         }
         return;

@@ -36,6 +36,7 @@ class BambaraHtml {
         new Bambara({
           amount: "${bambaraData.amount}",
           reference: '${bambaraData.reference}',
+          provider: '${bambaraData.provider}',
           customer: {
             phone: "${bambaraData.phone}",
             name: "${bambaraData.name}",

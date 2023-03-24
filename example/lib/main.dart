@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       await BambaraView(
                         data: BambaraData(
                           amount: 200,
+                          provider: 'bank-card',
                           reference: getRandomString(30),
                           phone: "786338816",
                           email: "bass@gmail.com",
