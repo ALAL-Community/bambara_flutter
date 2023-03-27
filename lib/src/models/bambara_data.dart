@@ -7,7 +7,7 @@ class BambaraData with EquatableMixin {
   final String email;
   final String name;
   final String publicKey;
-  final String provider;
+  final String? provider;
 
   BambaraData({
     required this.amount,
@@ -16,7 +16,7 @@ class BambaraData with EquatableMixin {
     required this.email,
     required this.name,
     required this.publicKey,
-    required this.provider,
+    this.provider,
   });
 
   @override
