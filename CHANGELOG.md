@@ -9,3 +9,7 @@ Initial Release
 ## 0.0.5
 
 Improvement release
+
+## 0.0.6
+
+Improvement release
