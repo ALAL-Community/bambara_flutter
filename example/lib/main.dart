@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           amount: 200,
                           provider: 'bank-card',
                           reference: getRandomString(30),
-                          phone: "786338816",
+                          phone: "786339816",
                           email: "bass@gmail.com",
                           name: "Bassirou",
                           publicKey: "pk_IuR83FabBsxW2P6mHPJywyGljga9QcFg",

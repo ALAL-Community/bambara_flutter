@@ -78,6 +78,7 @@ class _BambaraViewState extends State<BambaraView> {
     final event = BambaraEventModel.fromJson(res);
     switch (event.type) {
       case onSuccess:
+        await closeInAppWebView();
         widget.onSuccess!(event.data);
         if (widget.closeOnComplete == true) {
           sleep(const Duration(seconds: 6));
@@ -92,6 +93,7 @@ class _BambaraViewState extends State<BambaraView> {
                 : LaunchMode.externalApplication);
         return;
       case onError:
+        await closeInAppWebView();
         widget.onError!(event.data);
         if (widget.closeOnComplete == true) {
           sleep(const Duration(seconds: 6));
